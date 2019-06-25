@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 	},
 	flexRow: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'space-between'
 	}
 });
 

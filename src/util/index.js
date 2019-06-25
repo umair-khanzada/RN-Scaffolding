@@ -1,7 +1,5 @@
 const navigateTo = (navigation, route) => () => {
-	navigation.navigate(route)
+	navigation.navigate(route);
 };
 
-export {
-	navigateTo
-};
+export { navigateTo };

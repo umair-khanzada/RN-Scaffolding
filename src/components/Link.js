@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
-import THEME_CONFIG from "../config/themeConfig";
+import THEME_CONFIG from '../config/themeConfig';
 
 const style = StyleSheet.create({
 	linkContainer: {

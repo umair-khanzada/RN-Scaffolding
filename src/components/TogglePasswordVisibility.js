@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Icon} from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
-const TogglePasswordVisibility = ({visible, onPressHandler, disabled}) => (
+const TogglePasswordVisibility = (props) => (
 	<Icon
-		name={visible ? 'eyeo' : 'eye'}
-		iconStyle={{paddingHorizontal: 5, paddingVertical: 10}}
-		onPress={onPressHandler}
-		disabled={disabled}
-		disabledStyle={{backgroundColor: 'transparent', opacity: 0.5}}
+		name={props.visible ? 'eyeo' : 'eye'}
+		iconStyle={{ paddingHorizontal: 5, paddingVertical: 10 }}
+		onPress={props.onPressHandler}
+		disabled={props.disabled}
+		disabledStyle={{ backgroundColor: 'transparent', opacity: 0.5 }}
 	/>
 );
 

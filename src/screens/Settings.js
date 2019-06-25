@@ -3,67 +3,85 @@ import PropTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-
+// TODO: Fetch from DB or local json/js file.
 const list = [
-  {
-    title: 'Notification',
-    icon: 'notification'
-  },
-  {
-    title: 'Customer Service',
-    icon: 'customerservice'
-  },
-  {
-    title: 'Filter',
-    icon: 'filter'
-  },
-  {
-    title: 'Call Setting',
-    icon: 'mobile1'
-  },
-  {
-    title: 'Location',
-    icon: 'enviromento'
-  },
-  {
-    title: 'Favorite',
-    icon: 'hearto'
-  },
-  {
-    title: 'Clock',
-    icon: 'clockcircleo'
-  }
+	{
+		title: 'Notification',
+		icon: 'notification',
+		key: 'notification'
+	},
+	{
+		title: 'Customer Service',
+		icon: 'customerservice',
+		key: 'customer_service'
+	},
+	{
+		title: 'Filters',
+		icon: 'filter',
+		key: 'filters'
+	},
+	{
+		title: 'Call Setting',
+		icon: 'mobile1',
+		key: 'call_setting'
+	},
+	{
+		title: 'Location',
+		icon: 'enviromento',
+		key: 'location'
+	},
+	{
+		title: 'Favorite',
+		icon: 'hearto',
+		key: 'Favorite'
+	},
+	{
+		title: 'Clock',
+		icon: 'clockcircleo',
+		key: 'clock'
+	}
 ];
 
-class Settings extends Component{
-  constructor(props){
-    super(props);
+class Settings extends Component {
+	constructor(props) {
+		super(props);
 
-    this.state = {};
-  }
+		// Generate state keys according to settings list.
+		const settingsState = {};
+		list.forEach((obj) => (settingsState[obj.key] = false));
 
-  render () {
-    return (
-      <ScrollView>
-        {
-          list.map((item, i) => (
-            <ListItem
-              key={i}
-              switch
-              bottomDivider
-              title={item.title}
-              leftIcon={{name: item.icon}}
-            />
-          ))
-        }
-      </ScrollView>
-    )
-  }
+		this.state = {
+			...settingsState
+		};
+	}
+
+	handleToggle = (name) => (value) => {
+		this.setState({ [name]: value });
+	};
+
+	render() {
+		return (
+			<ScrollView>
+				{list.map((item, i) => (
+					<ListItem
+						key={item.key}
+						switch={{
+							value: this.state[item.key],
+							onValueChange: this.handleToggle(item.key)
+						}}
+						bottomDivider
+						title={item.title}
+						leftIcon={{ name: item.icon }}
+						contentContainerStyle={{ paddingVertical: 15 }}
+					/>
+				))}
+			</ScrollView>
+		);
+	}
 }
 
 Settings.propTypes = {};
 
 Settings.defaultProps = {};
-
 
 export default Settings;

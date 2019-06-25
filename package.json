@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "pretty": "prettier --write --use-tabs --single-quote --arrow-parens always \"src/**/*.js\""
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -23,12 +24,15 @@
     "babel-jest": "24.8.0",
     "jest": "24.8.0",
     "metro-react-native-babel-preset": "0.54.1",
+    "prettier": "1.18.2",
     "react-test-renderer": "16.8.3"
   },
   "jest": {
     "preset": "react-native"
   },
   "rnpm": {
-  "assets": ["./src/assets/fonts"]
-}
+    "assets": [
+      "./src/assets/fonts"
+    ]
+  }
 }

@@ -10,11 +10,11 @@ export default {
 		buttonStyle: [
 			{
 				height: 60,
-				elevation: 2,   // Set elevation 0 when used type outline button.
+				elevation: 2, // Set elevation 0 when used type outline button.
 				borderRadius: 0,
 				marginBottom: THEME_CONFIG.DEFAULT_M_B,
 				alignItems: 'center',
-				justifyContent: 'center',
+				justifyContent: 'center'
 				// borderWidth: 2,  // Set borderWidth when used type outline button.
 			}
 		],
@@ -23,7 +23,7 @@ export default {
 				fontSize: 16,
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
 			}
-		],
+		]
 	},
 
 	Input: {
@@ -38,7 +38,7 @@ export default {
 				borderWidth: 2,
 				borderBottomWidth: 2,
 				borderColor: THEME_CONFIG.PRIMARY_COLOR,
-				marginBottom: THEME_CONFIG.DEFAULT_M_B,
+				marginBottom: THEME_CONFIG.DEFAULT_M_B
 			}
 		],
 		inputStyle: [
@@ -55,7 +55,7 @@ export default {
 				marginTop: -10,
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
 			}
-		],
+		]
 	},
 
 	Icon: {
@@ -75,10 +75,9 @@ export default {
 				paddingVertical: 0,
 				borderWidth: 0,
 				backgroundColor: 'transparent',
-				marginVertical:0,
+				marginVertical: 0,
 				marginLeft: 0,
-				marginRight: 0,
-
+				marginRight: 0
 			}
 		]
 	},
@@ -87,7 +86,7 @@ export default {
 		style: [
 			{
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
-				fontSize: 16,
+				fontSize: 16
 			}
 		],
 		h4Style: [
