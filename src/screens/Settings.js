@@ -65,14 +65,12 @@ class Settings extends Component {
 				{list.map((item, i) => (
 					<ListItem
 						key={item.key}
+						title={item.title}
+						leftIcon={{ name: item.icon }}
 						switch={{
 							value: this.state[item.key],
 							onValueChange: this.handleToggle(item.key)
 						}}
-						bottomDivider
-						title={item.title}
-						leftIcon={{ name: item.icon }}
-						contentContainerStyle={{ paddingVertical: 15 }}
 					/>
 				))}
 			</ScrollView>

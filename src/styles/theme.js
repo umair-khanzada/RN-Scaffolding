@@ -95,5 +95,18 @@ export default {
 				fontSize: 20
 			}
 		]
+	},
+
+	ListItem: {
+		containerStyle: [
+			{
+				borderBottomWidth: 1
+			}
+		],
+		contentContainerStyle: [
+			{
+				paddingVertical: 10
+			}
+		]
 	}
 };
