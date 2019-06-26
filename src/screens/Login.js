@@ -36,20 +36,20 @@ class Login extends Component {
 			{ email: constraints.email, password: constraints.password }
 		);
 
-		if(!errors){
+		if (!errors) {
 			const { email, password } = this.state;
 			this.setState({ loading: true, errors });
 			API_CLIENT.post('auth', { email, password })
 				.then((res) => {
-					console.log("Data in login: ", res.data);
+					console.log('Data in login: ', res.data);
 					this.setState({ loading: false });
 					/* closure call */
 					navigateTo(this.props.navigation, 'App')();
 				})
 				.catch((err) => {
-					console.log("Err in login: ", err);
+					console.log('Err in login: ', err);
 					this.setState({ loading: false });
-				})
+				});
 		} else {
 			this.setState({ errors });
 		}
@@ -111,7 +111,12 @@ class Login extends Component {
 							onPress={navigateTo(this.props.navigation, 'ForgotPassword')}
 						/>
 					</View>
-					<Button title="Login" onPress={this.handleSubmit} loading={this.state.loading} disabled={this.state.loading} />
+					<Button
+						title="Login"
+						onPress={this.handleSubmit}
+						loading={this.state.loading}
+						disabled={this.state.loading}
+					/>
 					<Link
 						message="Don't have an account?"
 						text="Register Now"
