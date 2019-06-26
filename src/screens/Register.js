@@ -4,7 +4,7 @@ import validate from 'validate.js';
 import { View, ScrollView } from 'react-native';
 import { Text, Icon, Input, Button } from 'react-native-elements';
 import Link from '../components/Link';
-import { navigateTo, mapErrorMessage, constraints } from '../util';
+import { navigateTo, mapErrorMessage, constraints, API_CLIENT } from '../util';
 import styles from '../styles/global';
 import TogglePasswordVisibility from '../components/TogglePasswordVisibility';
 
@@ -42,9 +42,23 @@ class Register extends Component {
 			},
 			constraints
 		);
-		console.log('errors', errors);
-		this.setState({ errors });
-		// navigateTo(this.props.navigation, 'App')
+
+		if(!errors){
+			const { firstName, lastName, email, password } = this.state;
+			this.setState({ loading: true, errors });
+			API_CLIENT.post('users', { firstName, lastName, email, password })
+				.then((res) => {
+					console.log("Data in register: ", res.data);
+					this.setState({ loading: false });
+					navigateTo(this.props.navigation, 'App')();
+				})
+				.catch((err) => {
+					console.log("Err in register: ", err);
+					this.setState({ loading: false });
+				})
+		} else {
+			this.setState({ errors });
+		}
 	};
 
 	render() {
@@ -141,7 +155,7 @@ class Register extends Component {
 							onChangeText={this.handleChange('confirmPassword')}
 							// onSubmitEditing={this.handleSubmit}
 						/>
-						<Button title="Register" onPress={this.handleSubmit} />
+						<Button title="Register" onPress={this.handleSubmit} loading={this.state.loading} disabled={this.state.loading} />
 						<Link
 							message="Already have an account?"
 							text="Login Here"

@@ -5,7 +5,7 @@ import validate from 'validate.js';
 import { Text, Icon, Input, CheckBox, Button } from 'react-native-elements';
 import Link from '../components/Link';
 import TogglePasswordVisibility from '../components/TogglePasswordVisibility';
-import { navigateTo, mapErrorMessage, constraints } from '../util';
+import { navigateTo, mapErrorMessage, constraints, API_CLIENT } from '../util';
 
 import styles from '../styles/global';
 
@@ -35,9 +35,24 @@ class Login extends Component {
 			{ email: this.state.email, password: this.state.password },
 			{ email: constraints.email, password: constraints.password }
 		);
-		console.log('errors', errors);
-		this.setState({ errors });
-		// navigateTo(this.props.navigation, 'App')
+
+		if(!errors){
+			const { email, password } = this.state;
+			this.setState({ loading: true, errors });
+			API_CLIENT.post('auth', { email, password })
+				.then((res) => {
+					console.log("Data in login: ", res.data);
+					this.setState({ loading: false });
+					/* closure call */
+					navigateTo(this.props.navigation, 'App')();
+				})
+				.catch((err) => {
+					console.log("Err in login: ", err);
+					this.setState({ loading: false });
+				})
+		} else {
+			this.setState({ errors });
+		}
 	};
 
 	render() {
@@ -96,7 +111,7 @@ class Login extends Component {
 							onPress={navigateTo(this.props.navigation, 'ForgotPassword')}
 						/>
 					</View>
-					<Button title="Login" onPress={this.handleSubmit} />
+					<Button title="Login" onPress={this.handleSubmit} loading={this.state.loading} disabled={this.state.loading} />
 					<Link
 						message="Don't have an account?"
 						text="Register Now"

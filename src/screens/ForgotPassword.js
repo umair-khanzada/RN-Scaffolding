@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import validate from 'validate.js';
 import { Text, Icon, Input, Button } from 'react-native-elements';
 import Link from '../components/Link';
-import { constraints, navigateTo, mapErrorMessage } from '../util';
+import {constraints, navigateTo, mapErrorMessage, API_CLIENT} from '../util';
 import styles from '../styles/global';
 
 class ForgotPassword extends Component {
@@ -25,8 +25,24 @@ class ForgotPassword extends Component {
 			{ email: this.state.email },
 			{ email: constraints.email }
 		);
-		this.setState({ errors });
-		// navigateTo(this.props.navigation, 'App')
+
+		if(!errors){
+			const { email } = this.state;
+			this.setState({ loading: true, errors });
+			API_CLIENT.post('auth/forgot', { email })
+				.then((res) => {
+					console.log("Data in forgot: ", res.data);
+					this.setState({ loading: false });
+					/* closure call */
+					navigateTo(this.props.navigation, 'Login')();
+				})
+				.catch((err) => {
+					console.log("Err in forgot: ", err);
+					this.setState({ loading: false });
+				})
+		} else {
+			this.setState({ errors });
+		}
 	};
 
 	render() {
@@ -55,7 +71,7 @@ class ForgotPassword extends Component {
 						onChangeText={this.handleChange('email')}
 						// onSubmitEditing={this.emailSubmitEditing}
 					/>
-					<Button title="Forgot Password" onPress={this.handleSubmit} />
+					<Button title="Forgot Password" onPress={this.handleSubmit} loading={this.state.loading} disabled={this.state.loading} />
 					<Link
 						message="Back to"
 						text="Login"
