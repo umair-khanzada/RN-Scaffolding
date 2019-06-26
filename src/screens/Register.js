@@ -1,29 +1,50 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import validate from 'validate.js';
 import { View, ScrollView } from 'react-native';
 import { Text, Icon, Input, Button } from 'react-native-elements';
 import Link from '../components/Link';
-import { navigateTo } from '../util';
+import { navigateTo, mapErrorMessage, constraints } from '../util';
 import styles from '../styles/global';
 import TogglePasswordVisibility from '../components/TogglePasswordVisibility';
 
 class Register extends Component {
 	state = {
-		firstName: '',
-		lastName: '',
-		email: '',
-		password: '',
-		confirmPassword: '',
+		firstName: undefined,
+		lastName: undefined,
+		email: undefined,
+		password: undefined,
+		confirmPassword: undefined,
 		passwordSecureTextEntry: true,
-		confirmPasswordSecureTextEntry: true
+		confirmPasswordSecureTextEntry: true,
+		errors: {}
 	};
 
 	handleChange = (name) => (value) => {
-		this.setState({ [name]: value });
+		this.setState({
+			[name]: value,
+			errors: { ...this.state.errors, [name]: undefined }
+		});
 	};
 
 	handleToggle = (name) => () => {
 		this.setState({ [name]: !this.state[name] });
+	};
+
+	handleSubmit = () => {
+		const errors = validate(
+			{
+				firstName: this.state.firstName,
+				lastName: this.state.lastName,
+				email: this.state.email,
+				password: this.state.password,
+				confirmPassword: this.state.confirmPassword
+			},
+			constraints
+		);
+		console.log('errors', errors);
+		this.setState({ errors });
+		// navigateTo(this.props.navigation, 'App')
 	};
 
 	render() {
@@ -41,7 +62,7 @@ class Register extends Component {
 							leftIcon={{ name: 'user' }}
 							enablesReturnKeyAutomatically
 							returnKeyType="next"
-							errorMessage="First name is required"
+							errorMessage={mapErrorMessage(this.state.errors, 'firstName')}
 							value={this.state.firstName}
 							onChangeText={this.handleChange('firstName')}
 							// onSubmitEditing={() => this.changeFocus(this.lastNameInputRef, 100)}
@@ -53,7 +74,7 @@ class Register extends Component {
 							leftIcon={{ name: 'user' }}
 							enablesReturnKeyAutomatically
 							returnKeyType="next"
-							errorMessage="Last name is required"
+							errorMessage={mapErrorMessage(this.state.errors, 'lastName')}
 							value={this.state.lastName}
 							onChangeText={this.handleChange('lastName')}
 							// onSubmitEditing={() => this.changeFocus(this.lastNameInputRef, 100)}
@@ -63,7 +84,7 @@ class Register extends Component {
 							label={<Text>Email</Text>}
 							placeholder="Email"
 							leftIcon={{ name: 'envelope-o', type: 'font-awesome' }}
-							errorMessage="Email is required!"
+							errorMessage={mapErrorMessage(this.state.errors, 'email')}
 							enablesReturnKeyAutomatically
 							returnKeyType="next"
 							autoCapitalize="none"
@@ -84,7 +105,7 @@ class Register extends Component {
 									disabled={!this.state.password}
 								/>
 							}
-							errorMessage="Password is required!"
+							errorMessage={mapErrorMessage(this.state.errors, 'password')}
 							secureTextEntry={this.state.passwordSecureTextEntry}
 							enablesReturnKeyAutomatically
 							returnKeyType="done"
@@ -107,7 +128,10 @@ class Register extends Component {
 									disabled={!this.state.confirmPassword}
 								/>
 							}
-							errorMessage="Confirm password is required!"
+							errorMessage={mapErrorMessage(
+								this.state.errors,
+								'confirmPassword'
+							)}
 							secureTextEntry={this.state.confirmPasswordSecureTextEntry}
 							enablesReturnKeyAutomatically
 							returnKeyType="done"
@@ -117,7 +141,7 @@ class Register extends Component {
 							onChangeText={this.handleChange('confirmPassword')}
 							// onSubmitEditing={this.handleSubmit}
 						/>
-						<Button title="Register" />
+						<Button title="Register" onPress={this.handleSubmit} />
 						<Link
 							message="Already have an account?"
 							text="Login Here"

@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import validate from 'validate.js';
 import { Text, Icon, Input, Button } from 'react-native-elements';
 import Link from '../components/Link';
-import { navigateTo } from '../util';
+import { constraints, navigateTo, mapErrorMessage } from '../util';
 import styles from '../styles/global';
 
 class ForgotPassword extends Component {
 	state = {
-		email: ''
+		email: undefined,
+		errors: {}
 	};
 
 	handleChange = (name) => (value) => {
-		this.setState({ [name]: value });
+		this.setState({
+			[name]: value,
+			errors: { ...this.state.errors, [name]: undefined }
+		});
+	};
+
+	handleSubmit = () => {
+		const errors = validate(
+			{ email: this.state.email },
+			{ email: constraints.email }
+		);
+		this.setState({ errors });
+		// navigateTo(this.props.navigation, 'App')
 	};
 
 	render() {
@@ -31,7 +45,7 @@ class ForgotPassword extends Component {
 						label={<Text>Email</Text>}
 						placeholder="Email"
 						leftIcon={{ name: 'envelope-o', type: 'font-awesome' }}
-						errorMessage="Email is required!"
+						errorMessage={mapErrorMessage(this.state.errors, 'email')}
 						enablesReturnKeyAutomatically
 						returnKeyType="next"
 						autoCapitalize="none"
@@ -41,7 +55,7 @@ class ForgotPassword extends Component {
 						onChangeText={this.handleChange('email')}
 						// onSubmitEditing={this.emailSubmitEditing}
 					/>
-					<Button title="Forgot Password" />
+					<Button title="Forgot Password" onPress={this.handleSubmit} />
 					<Link
 						message="Back to"
 						text="Login"

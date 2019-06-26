@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import validate from 'validate.js';
 import { Text, Icon, Input, CheckBox, Button } from 'react-native-elements';
 import Link from '../components/Link';
 import TogglePasswordVisibility from '../components/TogglePasswordVisibility';
-import { navigateTo } from '../util';
+import { navigateTo, mapErrorMessage, constraints } from '../util';
+
 import styles from '../styles/global';
 
 class Login extends Component {
 	state = {
-		email: '',
-		password: '',
+		email: undefined,
+		password: undefined,
 		rememberMe: true,
 		secureTextEntry: true,
-		loading: false
+		loading: false,
+		errors: {}
 	};
 
 	handleChange = (name) => (value) => {
-		this.setState({ [name]: value });
+		this.setState({
+			[name]: value,
+			errors: { ...this.state.errors, [name]: undefined }
+		});
 	};
 
 	handleToggle = (name) => () => {
 		this.setState({ [name]: !this.state[name] });
+	};
+
+	handleSubmit = () => {
+		const errors = validate(
+			{ email: this.state.email, password: this.state.password },
+			{ email: constraints.email, password: constraints.password }
+		);
+		console.log('errors', errors);
+		this.setState({ errors });
+		// navigateTo(this.props.navigation, 'App')
 	};
 
 	render() {
@@ -36,7 +52,7 @@ class Login extends Component {
 						label={<Text>Email</Text>}
 						placeholder="Email"
 						leftIcon={{ name: 'envelope-o', type: 'font-awesome' }}
-						errorMessage="Email is required!"
+						errorMessage={mapErrorMessage(this.state.errors, 'email')}
 						enablesReturnKeyAutomatically
 						returnKeyType="next"
 						autoCapitalize="none"
@@ -57,7 +73,7 @@ class Login extends Component {
 								disabled={!this.state.password}
 							/>
 						}
-						errorMessage="Password is required!"
+						errorMessage={mapErrorMessage(this.state.errors, 'password')}
 						secureTextEntry={this.state.secureTextEntry}
 						enablesReturnKeyAutomatically
 						returnKeyType="done"
@@ -80,10 +96,7 @@ class Login extends Component {
 							onPress={navigateTo(this.props.navigation, 'ForgotPassword')}
 						/>
 					</View>
-					<Button
-						title="Login"
-						onPress={navigateTo(this.props.navigation, 'App')}
-					/>
+					<Button title="Login" onPress={this.handleSubmit} />
 					<Link
 						message="Don't have an account?"
 						text="Register Now"
