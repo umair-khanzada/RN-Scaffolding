@@ -32,24 +32,35 @@ class Register extends Component {
 	};
 
 	handleSubmit = () => {
+		const {
+			firstName,
+			lastName,
+			email,
+			password,
+			confirmPassword
+		} = this.state;
+
 		const errors = validate(
-			{
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
-				email: this.state.email,
-				password: this.state.password,
-				confirmPassword: this.state.confirmPassword
-			},
+			{ firstName, lastName, email, password, confirmPassword },
 			constraints
 		);
 
 		if (!errors) {
-			const { firstName, lastName, email, password } = this.state;
 			this.setState({ loading: true, errors });
 			API_CLIENT.post('users', { firstName, lastName, email, password })
 				.then((res) => {
 					console.log('Data in register: ', res.data);
-					this.setState({ loading: false });
+					/* reset form */
+					this.setState({
+						loading: false,
+						firstName: undefined,
+						lastName: undefined,
+						email: undefined,
+						password: undefined,
+						confirmPassword: undefined,
+						passwordSecureTextEntry: true,
+						confirmPasswordSecureTextEntry: true
+					});
 					navigateTo(this.props.navigation, 'App')();
 				})
 				.catch((err) => {

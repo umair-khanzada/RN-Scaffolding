@@ -32,7 +32,8 @@ class ForgotPassword extends Component {
 			API_CLIENT.post('auth/forgot', { email })
 				.then((res) => {
 					console.log('Data in forgot: ', res.data);
-					this.setState({ loading: false });
+					/* reset form */
+					this.setState({ loading: false, email: undefined });
 					/* closure call */
 					navigateTo(this.props.navigation, 'Login')();
 				})

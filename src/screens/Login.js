@@ -42,7 +42,14 @@ class Login extends Component {
 			API_CLIENT.post('auth', { email, password })
 				.then((res) => {
 					console.log('Data in login: ', res.data);
-					this.setState({ loading: false });
+					/* reset form */
+					this.setState({
+						loading: false,
+						email: undefined,
+						password: undefined,
+						rememberMe: true,
+						secureTextEntry: true
+					});
 					/* closure call */
 					navigateTo(this.props.navigation, 'App')();
 				})
