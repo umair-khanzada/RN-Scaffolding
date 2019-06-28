@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements';
 
 const TogglePasswordVisibility = (props) => (
 	<Icon
-		name={props.visible ? 'eyeo' : 'eye'}
+		name={props.visible ? 'eye-off' : 'eye'}
 		iconStyle={{ paddingHorizontal: 5, paddingVertical: 10 }}
 		onPress={props.onPressHandler}
 		disabled={props.disabled}
