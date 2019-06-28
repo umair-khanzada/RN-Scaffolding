@@ -11,13 +11,22 @@ class Home extends Component {
 		return (
 			<View style={[styles.container]}>
 				<View style={[styles.flex1]}>
-					<Icon name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
+					<Icon type="antdesign" name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
 				</View>
 				<View style={[styles.flex1]}>
-					<Button title="Login With Facebook" />
-					<Button title="Login With Google" />
+					<Button
+						title="Login With Facebook"
+						buttonStyle={[{backgroundColor: '#3b5897'}]}
+						icon={{ type: 'font-awesome', name: 'facebook-official' }}
+					/>
+					<Button
+						title="Login With Google"
+						buttonStyle={[{backgroundColor: '#c1382c'}]}
+						icon={{type: 'antdesign', name: 'googleplus'}}
+					/>
 					<Button
 						title="Login With Email"
+						icon={{name: 'email', type: 'entypo', size: 35}}
 						onPress={navigateTo(this.props.navigation, 'Login')}
 					/>
 					<Link

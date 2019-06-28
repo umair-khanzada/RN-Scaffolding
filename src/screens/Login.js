@@ -66,7 +66,7 @@ class Login extends Component {
 		return (
 			<View style={[styles.container]}>
 				<View style={[styles.flex2]}>
-					<Icon name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
+					<Icon type="antdesign" name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
 				</View>
 				<View style={{ flex: 3 }}>
 					<Input
@@ -87,7 +87,7 @@ class Login extends Component {
 					<Input
 						label={<Text>Password</Text>}
 						placeholder="Password"
-						leftIcon={{ name: 'lock', type: 'antdesign' }}
+						leftIcon={{ name: 'lock', type: 'antdesign', size: 28 }}
 						rightIcon={
 							<TogglePasswordVisibility
 								visible={!this.state.secureTextEntry}

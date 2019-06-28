@@ -1,4 +1,4 @@
-import THEME_CONFIG from '../config/themeConfig';
+import THEME_CONFIG from './themeConfig';
 
 export default {
 	colors: {
@@ -7,6 +7,11 @@ export default {
 	},
 
 	Button: {
+		containerStyle: [
+			{
+				position: 'relative'
+			}
+		],
 		buttonStyle: [
 			{
 				height: 60,
@@ -20,10 +25,23 @@ export default {
 		],
 		titleStyle: [
 			{
-				fontSize: 16,
+				fontSize: 18,
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
 			}
-		]
+		],
+		icon: {
+			color: '#fff',
+			size: 40
+		},
+		iconContainerStyle: [
+			{
+				position: 'absolute',
+				left: 10,
+			}
+		],
+		loadingProps: {
+			size: 35
+		}
 	},
 
 	Input: {
@@ -61,7 +79,7 @@ export default {
 	Icon: {
 		color: THEME_CONFIG.PRIMARY_COLOR,
 		size: THEME_CONFIG.ICON_SIZE,
-		type: 'antdesign'
+		type: 'feather'
 	},
 
 	CheckBox: {
@@ -69,6 +87,14 @@ export default {
 		checkedIcon: 'checksquare',
 		uncheckedIcon: 'closesquare',
 		checkedColor: THEME_CONFIG.PRIMARY_COLOR,
+		titleProps: {
+			style: [
+				{
+					fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
+					paddingLeft: 5,
+				}
+			]
+		},
 		containerStyle: [
 			{
 				paddingHorizontal: 0,

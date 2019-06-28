@@ -77,7 +77,7 @@ class Register extends Component {
 			<ScrollView style={styles.container}>
 				<View>
 					<View>
-						<Icon name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
+						<Icon type="antdesign" name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
 					</View>
 					<View>
 						<Input
@@ -122,7 +122,7 @@ class Register extends Component {
 						<Input
 							label={<Text>Password</Text>}
 							placeholder="Password"
-							leftIcon={{ name: 'lock', type: 'antdesign' }}
+							leftIcon={{ name: 'lock', type: 'antdesign', size: 28 }}
 							rightIcon={
 								<TogglePasswordVisibility
 									visible={!this.state.passwordSecureTextEntry}
@@ -143,7 +143,7 @@ class Register extends Component {
 						<Input
 							label={<Text>Confirm Password</Text>}
 							placeholder="Confirm Password"
-							leftIcon={{ name: 'lock' }}
+							leftIcon={{ name: 'lock', type: 'antdesign', size: 28 }}
 							rightIcon={
 								<TogglePasswordVisibility
 									visible={!this.state.confirmPasswordSecureTextEntry}
