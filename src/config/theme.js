@@ -25,7 +25,7 @@ export default {
 		],
 		titleStyle: [
 			{
-				fontSize: 18,
+				fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE + 2,
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
 			}
 		],
@@ -36,7 +36,7 @@ export default {
 		iconContainerStyle: [
 			{
 				position: 'absolute',
-				left: 10,
+				left: 10
 			}
 		],
 		loadingProps: {
@@ -64,7 +64,7 @@ export default {
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
 				paddingHorizontal: 10,
 				borderRadius: 0,
-				fontSize: 16
+				fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE
 			}
 		],
 		errorStyle: [
@@ -91,7 +91,7 @@ export default {
 			style: [
 				{
 					fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
-					paddingLeft: 5,
+					paddingLeft: 5
 				}
 			]
 		},
@@ -112,13 +112,14 @@ export default {
 		style: [
 			{
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
-				fontSize: 16
+				fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE
 			}
 		],
 		h4Style: [
 			{
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
-				fontSize: 20
+				fontSize: 20,
+				fontWeight: 'normal'
 			}
 		]
 	},
@@ -133,6 +134,17 @@ export default {
 			{
 				paddingVertical: 10
 			}
-		]
+		],
+		titleStyle: [
+			{
+				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
+			}
+		],
+		leftIcon: {
+			color: THEME_CONFIG.PRIMARY_COLOR
+		},
+		rightIcon: {
+			color: THEME_CONFIG.PRIMARY_COLOR
+		}
 	}
 };
