@@ -77,7 +77,11 @@ class Register extends Component {
 			<ScrollView style={styles.container}>
 				<View>
 					<View>
-						<Icon type="antdesign" name="setting" iconStyle={{ color: '#000', fontSize: 200 }} />
+						<Icon
+							type="antdesign"
+							name="setting"
+							iconStyle={{ color: '#000', fontSize: 200 }}
+						/>
 					</View>
 					<View>
 						<Input

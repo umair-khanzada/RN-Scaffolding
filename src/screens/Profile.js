@@ -26,7 +26,10 @@ const style = StyleSheet.create({
 		paddingVertical: 5,
 		paddingHorizontal: 15,
 		backgroundColor: THEME_CONFIG.PRIMARY_COLOR,
-		fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE + 4
+		fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE
+	},
+	listContainer: {
+		marginVertical: 50
 	}
 });
 
@@ -63,16 +66,18 @@ class Profile extends Component {
 						</View>
 					</View>
 				</ImageBackground>
-				<View>
-					{settings.map((item, i) => (
-						<ListItem
-							key={item.key}
-							title={item.title}
-							leftIcon={{ name: item.icon, type: item.type }}
-							rightIcon={{ name: 'right', type: 'antdesign' }}
-							containerStyle={[{backgroundColor: '#fff', paddingVertical: 10}]}
-						/>
-					))}
+				<View style={{ backgroundColor: THEME_CONFIG.BG_COLOR }}>
+					<View style={style.listContainer}>
+						{settings.map((item, i) => (
+							<ListItem
+								key={item.key}
+								title={item.title}
+								leftIcon={{ name: item.icon, type: item.type }}
+								rightIcon={{ name: 'right', type: 'antdesign', size: 15 }}
+								containerStyle={[{ paddingVertical: 5 }]}
+							/>
+						))}
+					</View>
 				</View>
 			</ScrollView>
 		);

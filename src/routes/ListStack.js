@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import Settings from '../screens/Settings';
+import List from '../screens/List';
 export default createStackNavigator({
-	Settings: {
-		screen: Settings
+	List: {
+		screen: List
 	}
 });

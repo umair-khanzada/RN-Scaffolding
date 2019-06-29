@@ -2,11 +2,23 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from 'react-navigation';
 import ProfileStack from './ProfileStack';
-import SettingsStack from './SettingsStack';
+import ListStack from './ListStack';
 import THEME_CONFIG from '../config/themeConfig';
 
 export default createBottomTabNavigator(
 	{
+		List: {
+			screen: ListStack,
+			navigationOptions: {
+				tabBarIcon: (props) => (
+					<Icon
+						name="bars"
+						type="antdesign"
+						iconStyle={{ color: props.tintColor }}
+					/>
+				)
+			}
+		},
 		Profile: {
 			screen: ProfileStack,
 			navigationOptions: {
@@ -14,24 +26,14 @@ export default createBottomTabNavigator(
 					<Icon name="user" iconStyle={{ color: props.tintColor }} />
 				)
 			}
-		},
-		Settings: {
-			screen: SettingsStack,
-			navigationOptions: {
-				tabBarIcon: (props) => (
-					<Icon name="setting" iconStyle={{ color: props.tintColor }} />
-				)
-			}
 		}
 	},
 	{
 		tabBarOptions: {
 			showLabel: false,
-			activeTintColor: THEME_CONFIG.PRIMARY_COLOR,
-			style: { backgroundColor: THEME_CONFIG.PRIMARY_COLOR },
-			//TODO:dynamic according to theme.
-			inactiveTintColor: '#fff',
-			activeBackgroundColor: '#fff'
+			activeTintColor: '#fff',
+			activeBackgroundColor: THEME_CONFIG.PRIMARY_COLOR,
+			inactiveTintColor: THEME_CONFIG.PRIMARY_COLOR
 		}
 	}
 );

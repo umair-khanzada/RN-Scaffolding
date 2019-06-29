@@ -42,7 +42,7 @@ const list = [
 	}
 ];
 
-class Settings extends Component {
+class Notifications extends Component {
 	constructor(props) {
 		super(props);
 
@@ -78,8 +78,8 @@ class Settings extends Component {
 	}
 }
 
-Settings.propTypes = {};
+Notifications.propTypes = {};
 
-Settings.defaultProps = {};
+Notifications.defaultProps = {};
 
-export default Settings;
+export default Notifications;

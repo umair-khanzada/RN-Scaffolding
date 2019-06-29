@@ -1,6 +1,7 @@
 const THEME_CONFIG = {
 	PRIMARY_COLOR: '#207d7c',
 	SECONDARY_COLOR: '#fff',
+	BG_COLOR: '#eee',
 	PRIMARY_FONT_FAMILY: 'ComfortaaRegular',
 	PRIMARY_FONT_SIZE: 16,
 	ICON_SIZE: 22,

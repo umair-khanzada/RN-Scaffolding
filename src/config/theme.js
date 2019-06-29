@@ -25,13 +25,13 @@ export default {
 		],
 		titleStyle: [
 			{
-				fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE + 2,
+				fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE,
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
 			}
 		],
 		icon: {
 			color: '#fff',
-			size: 40
+			size: 30
 		},
 		iconContainerStyle: [
 			{
@@ -127,7 +127,9 @@ export default {
 	ListItem: {
 		containerStyle: [
 			{
-				borderBottomWidth: 1
+				marginHorizontal: 15,
+				marginVertical: 2,
+				elevation: 2
 			}
 		],
 		contentContainerStyle: [
@@ -138,6 +140,12 @@ export default {
 		titleStyle: [
 			{
 				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY
+			}
+		],
+		subtitleStyle: [
+			{
+				fontFamily: THEME_CONFIG.PRIMARY_FONT_FAMILY,
+				fontSize: THEME_CONFIG.PRIMARY_FONT_SIZE - 4
 			}
 		],
 		leftIcon: {
