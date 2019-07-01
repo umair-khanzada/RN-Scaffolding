@@ -34,11 +34,5 @@ export default [
     "icon": "account-group",
     "key": "account-group",
     "type": "material-community"
-  },
-  {
-    "title": "Logout",
-    "icon": "logout",
-    "key": "logout",
-    "type": "antdesign"
-  },
+  }
 ]

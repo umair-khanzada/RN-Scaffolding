@@ -3,6 +3,7 @@ import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from 'react-navigation';
 import ProfileStack from './ProfileStack';
 import ListStack from './ListStack';
+import FavoriteStack from './FavoriteStack';
 import THEME_CONFIG from '../config/themeConfig';
 
 export default createBottomTabNavigator(
@@ -14,6 +15,18 @@ export default createBottomTabNavigator(
 					<Icon
 						name="bars"
 						type="antdesign"
+						iconStyle={{ color: props.tintColor }}
+					/>
+				)
+			}
+		},
+		Favorite: {
+			screen: FavoriteStack,
+			navigationOptions: {
+				tabBarIcon: (props) => (
+					<Icon
+						name="favorite"
+						type="material"
 						iconStyle={{ color: props.tintColor }}
 					/>
 				)

@@ -6,9 +6,10 @@ import THEME_CONFIG from '../config/themeConfig';
 
 // TODO: replace data from server/api.
 import list from '../../__mock__/list';
+const filteredList = list.filter((obj) => obj.online);
 
 class List extends Component {
-	state = { refresh: false, list: [...list] };
+	state = { filteredList: [...filteredList], refresh: false };
 
 	keyExtractor = ({ item, i }) => item.id;
 
@@ -16,20 +17,20 @@ class List extends Component {
 		this.setState({ refresh: true });
 		setTimeout(() => {
 			this.setState({
-				list: [...list],
+				filteredList: [...filteredList],
 				refresh: false
 			});
 		}, 2000);
 	};
 
-	handleToggle = (obj) => () => {
-		//Note: Do not mutate directly.
-		//TODO: this is temporary for toggling.
-		obj.online = !obj.online;
-		this.setState({});
+	handleToggle = (obj, i) => () => {
+		const { filteredList } = this.state;
+		this.setState({
+			filteredList: [...filteredList.slice(0, i), ...filteredList.slice(i + 1)]
+		});
 	};
 
-	renderItem = ({ item }) => (
+	renderItem = ({ item, index }) => (
 		<ListItem
 			title={`${item.firstName} ${item.lastName}`}
 			subtitle={item.title}
@@ -38,7 +39,7 @@ class List extends Component {
 				name: `${item.online ? 'favorite' : 'favorite-border'}`,
 				type: 'material',
 				size: 20,
-				onPress: this.handleToggle(item)
+				onPress: this.handleToggle(item, index)
 			}}
 			containerStyle={[{ paddingVertical: 5, paddingLeft: 0 }]}
 		/>
@@ -51,7 +52,7 @@ class List extends Component {
 				// keyExtractor={this.keyExtractor}
 				refreshing={this.state.refresh}
 				onRefresh={this.reloadData}
-				data={this.state.list}
+				data={this.state.filteredList}
 				renderItem={this.renderItem}
 			/>
 		);

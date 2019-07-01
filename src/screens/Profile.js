@@ -5,6 +5,7 @@ import { ListItem, Text } from 'react-native-elements';
 import RoundButton from '../components/RoundButton';
 import THEME_CONFIG from '../config/themeConfig';
 import settings from '../../__mock__/settings';
+import { navigateTo } from '../util';
 
 const style = StyleSheet.create({
 	cover: {
@@ -34,18 +35,6 @@ const style = StyleSheet.create({
 });
 
 class Profile extends Component {
-	constructor(props) {
-		super(props);
-
-		// Generate state keys according to settings list.
-		const settingsState = {};
-		settings.forEach((obj) => (settingsState[obj.key] = false));
-
-		this.state = {
-			...settingsState
-		};
-	}
-
 	handleToggle = (name) => (value) => {
 		this.setState({ [name]: value });
 	};
@@ -77,6 +66,14 @@ class Profile extends Component {
 								containerStyle={[{ paddingVertical: 5 }]}
 							/>
 						))}
+						<ListItem
+							key="logout"
+							title="Logout"
+							leftIcon={{ name: 'logout', type: 'antdesign' }}
+							rightIcon={{ name: 'right', type: 'antdesign', size: 15 }}
+							containerStyle={[{ paddingVertical: 5 }]}
+							onPress={navigateTo(this.props.navigation, 'Login')}
+						/>
 					</View>
 				</View>
 			</ScrollView>

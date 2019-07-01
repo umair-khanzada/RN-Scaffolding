@@ -127,7 +127,7 @@ export default {
 	ListItem: {
 		containerStyle: [
 			{
-				marginHorizontal: 15,
+				// marginHorizontal: 15,
 				marginVertical: 2,
 				elevation: 2
 			}
