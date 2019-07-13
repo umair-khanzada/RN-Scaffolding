@@ -36,7 +36,11 @@ export default createBottomTabNavigator(
 			screen: ProfileStack,
 			navigationOptions: {
 				tabBarIcon: (props) => (
-					<Icon name="user" iconStyle={{ color: props.tintColor }} />
+					<Icon
+						name="md-settings"
+						type="ionicon"
+						iconStyle={{ color: props.tintColor }}
+					/>
 				)
 			}
 		}

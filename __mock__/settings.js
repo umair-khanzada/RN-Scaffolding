@@ -1,38 +1,52 @@
+import { navigateTo } from '../src/util';
+
+/*
+ support all listItem props,
+ check by clicking on below link.
+ https://react-native-training.github.io/react-native-elements/docs/listitem.html
+*/
+
 export default [
   {
+    "key": "1",
+    "title": "Profile",
+    "leftIcon": {"name": "edit", "type": "antdesign"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
+  },
+  {
+    "key": "2",
     "title": "Notifications",
-    "icon": "notifications-active",
-    "key": "notifications-active",
-    "type": "material"
+    "leftIcon": {"name": "notifications-active", "type": "material"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
   },
   {
+    "key": "3",
     "title": "Progress",
-    "icon": "progress-two",
-    "key": "progress-two",
-    "type": "entypo"
+    "leftIcon": {"name": "progress-two", "type": "entypo"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
   },
   {
+    "key": "4",
     "title": "Favorite",
-    "icon": "favorite",
-    "key": "favorite",
-    "type": "material"
+    "leftIcon": {"name": "favorite", "type": "material"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
   },
   {
-    "title": "Edit",
-    "icon": "edit",
-    "key": "edit",
-    "type": "antdesign"
-  },
-  {
+    "key": "5",
     "title": "Feedback",
-    "icon": "feedback",
-    "key": "feedback",
-    "type": "material"
+    "leftIcon": {"name": "feedback", "type": "material"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
   },
   {
+    "key": "6",
     "title": "About Us",
-    "icon": "account-group",
-    "key": "account-group",
-    "type": "material-community"
+    "leftIcon": {"name": "account-group", "type": "material-community"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
+  },
+  {
+    "key": "7",
+    "title": "Logout",
+    "leftIcon": {"name": "logout", "type": "antdesign"},
+    "onPress": (navigation) => navigateTo(navigation, "Login")
   }
 ]

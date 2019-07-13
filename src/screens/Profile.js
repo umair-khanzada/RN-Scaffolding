@@ -57,23 +57,16 @@ class Profile extends Component {
 				</ImageBackground>
 				<View style={{ backgroundColor: THEME_CONFIG.BG_COLOR }}>
 					<View style={style.listContainer}>
-						{settings.map((item, i) => (
-							<ListItem
-								key={item.key}
-								title={item.title}
-								leftIcon={{ name: item.icon, type: item.type }}
-								rightIcon={{ name: 'right', type: 'antdesign', size: 15 }}
-								containerStyle={[{ paddingVertical: 5 }]}
-							/>
-						))}
-						<ListItem
-							key="logout"
-							title="Logout"
-							leftIcon={{ name: 'logout', type: 'antdesign' }}
-							rightIcon={{ name: 'right', type: 'antdesign', size: 15 }}
-							containerStyle={[{ paddingVertical: 5 }]}
-							onPress={navigateTo(this.props.navigation, 'Login')}
-						/>
+						{
+							settings.map(({onPress, ...item}, i) => (
+								<ListItem
+									rightIcon={{ name: 'right', type: 'antdesign', size: 15 }}
+									containerStyle={[{ paddingVertical: 5 }]}
+									onPress={onPress(this.props.navigation)}
+									{...item}
+								/>
+							))
+						}
 					</View>
 				</View>
 			</ScrollView>
