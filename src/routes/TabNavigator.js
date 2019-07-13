@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from 'react-navigation';
-import ProfileStack from './ProfileStack';
+import SettingStack from './SettingStack';
 import ListStack from './ListStack';
 import FavoriteStack from './FavoriteStack';
 import THEME_CONFIG from '../config/themeConfig';
@@ -32,8 +32,8 @@ export default createBottomTabNavigator(
 				)
 			}
 		},
-		Profile: {
-			screen: ProfileStack,
+		Setting: {
+			screen: SettingStack,
 			navigationOptions: {
 				tabBarIcon: (props) => (
 					<Icon

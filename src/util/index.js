@@ -1,4 +1,7 @@
-import constraints from './constraints';
+import {
+	registerConstraints as constraints,
+	changePasswordConstraints
+} from './constraints';
 import { API_CLIENT } from './apiClient';
 
 const navigateTo = (navigation, route) => () => {
@@ -11,4 +14,10 @@ const mapErrorMessage = (errors, key) => {
 	}
 };
 
-export { navigateTo, mapErrorMessage, constraints, API_CLIENT };
+export {
+	navigateTo,
+	mapErrorMessage,
+	constraints,
+	changePasswordConstraints,
+	API_CLIENT
+};

@@ -34,7 +34,7 @@ const style = StyleSheet.create({
 	}
 });
 
-class Profile extends Component {
+class Settings extends Component {
 	handleToggle = (name) => (value) => {
 		this.setState({ [name]: value });
 	};
@@ -74,8 +74,8 @@ class Profile extends Component {
 	}
 }
 
-Profile.propTypes = {};
+Settings.propTypes = {};
 
-Profile.defaultProps = {};
+Settings.defaultProps = {};
 
-export default Profile;
+export default Settings;

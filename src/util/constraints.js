@@ -1,4 +1,4 @@
-export default {
+const registerConstraints = {
 	firstName: {
 		presence: true,
 		length: {
@@ -35,3 +35,33 @@ export default {
 		equality: 'password'
 	}
 };
+
+const changePasswordConstraints = {
+	password: {
+		presence: true,
+		length: {
+			minimum: 8,
+			message: 'must be at least 8 characters'
+		}
+	},
+	newPassword: {
+		presence: true,
+		length: {
+			minimum: 8,
+			message: 'must be at least 8 characters'
+		}
+	},
+	confirmPassword: {
+		presence: true,
+		length: {
+			minimum: 8,
+			message: 'must be at least 8 characters'
+		},
+		equality: 'newPassword'
+	}
+};
+
+export {
+	registerConstraints,
+	changePasswordConstraints
+}

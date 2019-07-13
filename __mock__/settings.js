@@ -45,6 +45,12 @@ export default [
   },
   {
     "key": "7",
+    "title": "Change Password",
+    "leftIcon": {"name": "key-change", "type": "material-community"},
+    "onPress": (navigation) => navigateTo(navigation, "ChangePassword")
+  },
+  {
+    "key": "8",
     "title": "Logout",
     "leftIcon": {"name": "logout", "type": "antdesign"},
     "onPress": (navigation) => navigateTo(navigation, "Login")
